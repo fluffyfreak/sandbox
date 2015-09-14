@@ -494,12 +494,12 @@ public:
 		ParseString(psz);
 	}
 
-	CDateTime(int secs_since_millenium)
+	CDateTime(time_t secs_since_millenium)
 	{
-		int days = secs_since_millenium / (24 * 3600);
-		int secs = secs_since_millenium % (24 * 3600);
-		m_date.SetDaysSinceMillenium(days);
-		m_time.SetSecondsSinceMidnight(secs);
+		time_t days = secs_since_millenium / (24 * 3600);
+		time_t secs = secs_since_millenium % (24 * 3600);
+		m_date.SetDaysSinceMillenium(int(days));
+		m_time.SetSecondsSinceMidnight(int(secs));
 	}
 
 	CDate &GetDate()				{ return m_date; }

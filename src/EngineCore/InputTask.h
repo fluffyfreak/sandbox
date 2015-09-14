@@ -30,7 +30,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef __InputTask_h__
 #define __InputTask_h__
 
-interface IInputEventListener
+struct IInputEventListener
 {
 public:
 	virtual void OnKeyDown(int nKey, int nMod) {}

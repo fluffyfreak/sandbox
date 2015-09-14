@@ -1,7 +1,7 @@
 // GLCloud2.cpp : Defines the entry point for the application.
 //
 
-#include <EngineCore.h>
+#include "StdAfx.h"
 #include "CloudSphere.h"
 
 DECLARE_CORE_GLOBALS;

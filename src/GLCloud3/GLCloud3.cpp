@@ -1,7 +1,7 @@
 // GLCloud3.cpp : Defines the entry point for the application.
 //
 
-#include <EngineCore.h>
+#include "StdAfx.h"
 #include "ProjectedTetrahedra.h"
 
 DECLARE_CORE_GLOBALS;
