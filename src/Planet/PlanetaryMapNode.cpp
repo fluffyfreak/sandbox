@@ -509,7 +509,7 @@ void CPlanetaryMapNode::UpdateSurface()
 	m_nNodeFlags &= ~(CameraInMask | BeyondHorizonMask | OutsideFrustumMask);
 
 	// Calculate the map coordinates for the center of each quadrant
-	short nFace = GetFace();
+	unsigned char nFace = GetFace();
 	float fMid[2] = {CMath::Avg(m_fCorner[0], m_fCorner[2]), CMath::Avg(m_fCorner[1], m_fCorner[3])};
 	float x[2] = {CMath::Avg(m_fCorner[0], fMid[0]), CMath::Avg(m_fCorner[2], fMid[0])};
 	float y[2] = {CMath::Avg(m_fCorner[1], fMid[1]), CMath::Avg(m_fCorner[3], fMid[1])};

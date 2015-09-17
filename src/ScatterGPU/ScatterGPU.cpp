@@ -31,8 +31,6 @@ protected:
 	float m_fWavelength4[3];
 	float m_fRayleighScaleDepth;
 	float m_fMieScaleDepth;
-	CPixelBuffer m_pbOpticalDepth;
-	CTexture m_tOpticalDepth;
 
 	CGLShaderObject m_shSkyFromSpace;
 	CGLShaderObject m_shSkyFromAtmosphere;
@@ -114,6 +112,7 @@ public:
 				break;
 			case SDLK_PLUS:
 			case SDLK_KP_PLUS:
+			case SDLK_EQUALS:
 				if(m_bHDR)
 				{
 					if(m_fExposure < 10.0f)
@@ -145,7 +144,7 @@ public:
 		m_vLight = CVector(1000, 1000, 1000);
 		m_vLightDirection = m_vLight / m_vLight.Magnitude();
 
-		m_nSamples = 2;		// Number of sample rays to use in integral equation
+		m_nSamples = 6;		// Number of sample rays to use in integral equation
 		m_Kr = 0.0025f;		// Rayleigh scattering constant
 		m_Kr4PI = m_Kr*4.0f*PI;
 		m_Km = 0.0015f;		// Mie scattering constant
@@ -166,8 +165,6 @@ public:
 
 		m_fRayleighScaleDepth = 0.25f;
 		m_fMieScaleDepth = 0.1f;
-		m_pbOpticalDepth.MakeOpticalDepthBuffer(m_fInnerRadius, m_fOuterRadius, m_fRayleighScaleDepth, m_fMieScaleDepth);
-		m_tOpticalDepth.Init(&m_pbOpticalDepth);
 
 		m_shSkyFromSpace.Init("shaders/SkyFromSpaceVert.glsl", "shaders/SkyFromSpaceFrag.glsl");
 		m_shSkyFromAtmosphere.Init("shaders/SkyFromAtmosphereVert.glsl", "shaders/SkyFromAtmosphereFrag.glsl");
@@ -196,7 +193,7 @@ public:
 			CVector I = CCameraTask::GetPtr()->GetVelocity();
 			float fSpeed = I.Magnitude();
 			I /= fSpeed;
-			CVector R = N * (2.0*(-I | N)) + I;
+			CVector R = N * (2.0f*(-I | N)) + I;
 			CCameraTask::GetPtr()->SetVelocity(R * fSpeed);
 
 			vCamera = N * (m_fInnerRadius + 0.01f);
@@ -233,7 +230,7 @@ public:
 		pGroundShader->SetUniformParameter1f("g", m_g);
 		pGroundShader->SetUniformParameter1f("g2", m_g*m_g);
 		pGroundShader->SetUniformParameter1i("nSamples", m_nSamples);
-		pGroundShader->SetUniformParameter1f("fSamples", m_nSamples);
+		pGroundShader->SetUniformParameter1f("fSamples", float(m_nSamples));
 		pGroundShader->SetUniformParameter1i("s2Test", 0);
 		GLUquadricObj *pSphere = gluNewQuadric();
 		//m_tEarth.Enable();
@@ -268,9 +265,7 @@ public:
 		pSkyShader->SetUniformParameter1f("g", m_g);
 		pSkyShader->SetUniformParameter1f("g2", m_g*m_g);
 		pSkyShader->SetUniformParameter1i("nSamples", m_nSamples);
-		pSkyShader->SetUniformParameter1f("fSamples", m_nSamples);
-		m_tOpticalDepth.Enable();
-		pSkyShader->SetUniformParameter1f("tex", 0);
+		pSkyShader->SetUniformParameter1f("fSamples", float(m_nSamples));
 		glFrontFace(GL_CW);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_ONE, GL_ONE);
@@ -279,7 +274,6 @@ public:
 		gluDeleteQuadric(pSphere);
 		glDisable(GL_BLEND);
 		glFrontFace(GL_CCW);
-		m_tOpticalDepth.Disable();
 		pSkyShader->Disable();
 
 		glPolygonMode(GL_FRONT, GL_FILL);

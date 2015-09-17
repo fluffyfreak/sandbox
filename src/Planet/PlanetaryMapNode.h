@@ -191,7 +191,7 @@ public:
 
 	// Some common Get methods
 	CPlanetaryMap *GetPlanetaryMap()				{ return m_pMap; }
-	short GetFace()									{ return m_nNodeFlags & FaceMask; }
+	unsigned char GetFace()									{ return m_nNodeFlags & FaceMask; }
 	int GetQuadrant()								{ return (m_nNodeFlags & QuadrantMask) >> 3; }
 	int GetLevel()									{ return (m_nNodeFlags & LevelMask) >> 5; }
 	bool IsDirty()									{ return (m_nNodeFlags & NodeDirty) != 0; }
@@ -284,7 +284,7 @@ public:
 	CPlanetaryMapCoord GetNearestCoord(const CPlanetaryMapCoord &qtc, unsigned char nQuadrant=-1)
 	{
 		float x, y;
-		short nFace = GetFace();
+		unsigned char nFace = GetFace();
 		CPlanetaryMapCoord qtcTemp(nFace, qtc.GetDirectionVector());
 		switch(nQuadrant)
 		{

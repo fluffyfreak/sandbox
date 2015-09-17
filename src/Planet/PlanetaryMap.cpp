@@ -169,7 +169,7 @@ void CPlanetaryMap::DrawSurface()
 	}
 
 	// Draw the planet
-	CGLShaderObject *pShader;
+	CGLShaderObject *pShader = nullptr;
 	if(IsInAtmosphere())
 		pShader = &m_shGroundFromAtmosphere;
 	else if(HasAtmosphere())
