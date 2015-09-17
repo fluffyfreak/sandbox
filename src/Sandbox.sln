@@ -11,18 +11,39 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineCore", "EngineCore\EngineCore.vcxproj", "{5B8E14E9-BD92-47A8-8709-5C3EFBB18CAC}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLCloud1", "GLCloud1\GLCloud1.vcxproj", "{F25021EA-40A5-4B2D-8962-72FF84D9910F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5B8E14E9-BD92-47A8-8709-5C3EFBB18CAC} = {5B8E14E9-BD92-47A8-8709-5C3EFBB18CAC}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLCloud2", "GLCloud2\GLCloud2.vcxproj", "{C11BC15F-C779-4173-9BD6-9099159C7A25}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5B8E14E9-BD92-47A8-8709-5C3EFBB18CAC} = {5B8E14E9-BD92-47A8-8709-5C3EFBB18CAC}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLCloud3", "GLCloud3\GLCloud3.vcxproj", "{75D68010-CCF3-45AE-B6A0-280F8E104BB9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5B8E14E9-BD92-47A8-8709-5C3EFBB18CAC} = {5B8E14E9-BD92-47A8-8709-5C3EFBB18CAC}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ScatterCPU", "ScatterCPU\ScatterCPU.vcxproj", "{A301AD6B-7272-4ABF-A54F-99361D2A6BA5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5B8E14E9-BD92-47A8-8709-5C3EFBB18CAC} = {5B8E14E9-BD92-47A8-8709-5C3EFBB18CAC}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ScatterGPU", "ScatterGPU\ScatterGPU.vcxproj", "{9E36A56D-6874-49C6-90A1-3E5AB40F8CC2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5B8E14E9-BD92-47A8-8709-5C3EFBB18CAC} = {5B8E14E9-BD92-47A8-8709-5C3EFBB18CAC}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SpriteTest", "SpriteTest\SpriteTest.vcxproj", "{9F9F3C69-9A2A-4435-9A59-85DB62615442}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5B8E14E9-BD92-47A8-8709-5C3EFBB18CAC} = {5B8E14E9-BD92-47A8-8709-5C3EFBB18CAC}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestApp", "TestApp\TestApp.vcxproj", "{C2DF0F89-776B-42C3-8508-31C6ECF35D1F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5B8E14E9-BD92-47A8-8709-5C3EFBB18CAC} = {5B8E14E9-BD92-47A8-8709-5C3EFBB18CAC}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
