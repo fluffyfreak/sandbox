@@ -102,10 +102,10 @@ public:
 		glGenTextures(1, &m_nTextureObject);
 		glBindTexture(m_nTextureTarget, m_nTextureObject);
 		glTexImage2D(m_nTextureTarget, 0, m_nInternalFormat, m_nWidth, m_nHeight, 0, GL_RGBA, GL_FLOAT, NULL);
-		glTexParameterf(m_nTextureTarget, GL_TEXTURE_MIN_FILTER, m_nFilterMode);
-		glTexParameterf(m_nTextureTarget, GL_TEXTURE_MAG_FILTER, m_nFilterMode);
-		glTexParameterf(m_nTextureTarget, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameterf(m_nTextureTarget, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glTexParameteri(m_nTextureTarget, GL_TEXTURE_MIN_FILTER, m_nFilterMode);
+		glTexParameteri(m_nTextureTarget, GL_TEXTURE_MAG_FILTER, m_nFilterMode);
+		glTexParameteri(m_nTextureTarget, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(m_nTextureTarget, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 		LOG_GLERROR();
 
 		// Generate the frame buffer object

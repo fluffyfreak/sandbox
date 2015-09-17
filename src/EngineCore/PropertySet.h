@@ -120,7 +120,7 @@ public:
 	void SetProperty(const char *pszKey, int nValue)
 	{
 		char szValue[20];
-		itoa(nValue, szValue, 10);
+		_itoa(nValue, szValue, 10);
 		SetProperty(pszKey, szValue);
 	}
 

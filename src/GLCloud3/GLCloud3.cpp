@@ -74,7 +74,7 @@ public:
 		float fDistance[nCubes];
 		for(i=0; i<nCubes; i++)
 		{
-			cube[i].SetPosition(CVector(i/(LEVEL*LEVEL)*2, ((i/LEVEL)%LEVEL)*2, (i%LEVEL)*2));
+			cube[i].SetPosition(CVector(float(i/(LEVEL*LEVEL)*2), float(((i/LEVEL)%LEVEL)*2), float((i%LEVEL)*2)));
 			fDistance[i] = cube[i].GetPosition().Distance(camera.GetPosition());
 		}
 		int nOrder[nCubes];

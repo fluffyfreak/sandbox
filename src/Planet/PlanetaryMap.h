@@ -170,8 +170,8 @@ public:
 		pShader->SetUniformParameter1f("fScaleOverScaleDepth", (1.0f / (m_fAtmosphereRadius - m_fRadius)) / fRayleighScaleDepth);
 		pShader->SetUniformParameter1f("g", m_fG);
 		pShader->SetUniformParameter1f("g2", m_fG*m_fG);
-		pShader->SetUniformParameter1i("nSamples", 2);
-		pShader->SetUniformParameter1f("fSamples", 2);
+		pShader->SetUniformParameter1i("nSamples", 3);
+		pShader->SetUniformParameter1f("fSamples", 3);
 		pShader->SetUniformParameter1i("s2Tex", 0);
 	}
 };

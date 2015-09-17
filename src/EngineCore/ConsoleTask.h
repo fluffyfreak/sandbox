@@ -76,10 +76,10 @@ public:
 		font.Begin();
 		glColor4d(0.25f, 0.25f, 0.25f, 0.5f);
 		glBegin(GL_QUADS);
-		glVertex2f(0, 0);
-		glVertex2f(0, CONSOLE_ROW_HEIGHT*(m_listRows.size() + 1));
-		glVertex2f(800, CONSOLE_ROW_HEIGHT*(m_listRows.size() + 1));
-		glVertex2f(800, 0);
+		glVertex2f(0.f, 0.f);
+		glVertex2f(0.f, float(CONSOLE_ROW_HEIGHT*(m_listRows.size() + 1)));
+		glVertex2f(800.f, float(CONSOLE_ROW_HEIGHT*(m_listRows.size() + 1)));
+		glVertex2f(800.f, 0.f);
 		glEnd();
 		glColor4d(1.0, 1.0, 1.0, 1.0);
 		int nHeight = 0;
