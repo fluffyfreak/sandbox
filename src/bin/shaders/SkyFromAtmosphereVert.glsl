@@ -77,3 +77,4 @@ void main(void)
 	gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
 	v3Direction = v3CameraPos - v3Pos;
 }
+

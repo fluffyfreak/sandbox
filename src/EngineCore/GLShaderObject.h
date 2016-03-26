@@ -110,7 +110,7 @@ public:
 			return false;
 		}
 		ifVertexShader.seekg(0, std::ios::end);
-		nBytes = ifVertexShader.tellg();
+		nBytes = int(ifVertexShader.tellg());
 		ifVertexShader.seekg(0, std::ios::beg);
 		psz = new char[nBytes+1];
 		ifVertexShader.read(psz, nBytes);
@@ -136,7 +136,7 @@ public:
 			return false;
 		}
 		ifFragmentShader.seekg(0, std::ios::end);
-		nBytes = ifFragmentShader.tellg();
+		nBytes = int(ifFragmentShader.tellg());
 		ifFragmentShader.seekg(0, std::ios::beg);
 		psz = new char[nBytes];
 		ifFragmentShader.read(psz, nBytes);

@@ -1,4 +1,9 @@
-// BumpFrag.glsl
+//
+// Atmospheric scattering fragment shader
+//
+// Author: Sean O'Neil
+//
+// Copyright (c) 2004 Sean O'Neil
 //
 
 uniform vec3 v3LightPos;		// The direction vector to the light source

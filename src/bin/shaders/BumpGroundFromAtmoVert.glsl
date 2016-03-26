@@ -33,7 +33,7 @@ float scale(float fCos)
 	return fScaleDepth * exp(-0.00287 + x*(0.459 + x*(3.83 + x*(-6.80 + x*5.25))));
 }
 
-void main(void)
+void main()
 {
 	// Get the ray from the camera to the vertex, and its length (which is the far point of the ray passing through the atmosphere)
 	vec3 v3Pos = gl_Vertex.xyz;
