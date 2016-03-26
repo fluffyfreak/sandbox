@@ -99,7 +99,8 @@ public:
 		m_hFragmentShader = glCreateShaderObjectARB(GL_FRAGMENT_SHADER_ARB);
 
 		char *psz;
-		int nBytes, bSuccess;
+		int nBytes;
+		int bSuccess;
 
 		LogInfo("Compiling GLSL vertex shader %s", pszVertexShader);
 		std::ifstream ifVertexShader(pszVertexShader, std::ios::binary);
