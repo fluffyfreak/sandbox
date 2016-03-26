@@ -137,7 +137,7 @@ public:
 	virtual bool Start()
 	{
 		CInputTask::GetPtr()->AddInputEventListener(this);
-		CCameraTask::GetPtr()->SetPosition(CVector(0, 0, 25));
+		CCameraTask::GetPtr()->SetPosition(CVector(0, 0, 10.01f));
 		CCameraTask::GetPtr()->SetThrust(1.0f);
 
 		m_nPolygonMode = GL_FILL;
@@ -187,9 +187,11 @@ public:
 
 		// Cheap collision detection/response
 		CVector vCamera = CCameraTask::GetPtr()->GetPosition();
-		if(vCamera.Magnitude() < m_fInnerRadius + 0.01f)
+		const float camMag = vCamera.Magnitude();
+		const float camMagSqr = vCamera.MagnitudeSquared();
+		if(camMag < m_fInnerRadius + 0.01f)
 		{
-			CVector N = vCamera / vCamera.Magnitude();
+			CVector N = vCamera / camMag;
 			CVector I = CCameraTask::GetPtr()->GetVelocity();
 			float fSpeed = I.Magnitude();
 			I /= fSpeed;
@@ -199,14 +201,13 @@ public:
 			vCamera = N * (m_fInnerRadius + 0.01f);
 			CCameraTask::GetPtr()->SetPosition(vCamera);
 		}
-		CVector vUnitCamera = vCamera / vCamera.Magnitude();
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glPolygonMode(GL_FRONT, m_nPolygonMode);
 
 		// Draw the groud sphere
 		CGLShaderObject *pGroundShader;
-		if(vCamera.Magnitude() >= m_fOuterRadius)
+		if(camMag >= m_fOuterRadius)
 			pGroundShader = &m_shGroundFromSpace;
 		else
 			pGroundShader = &m_shGroundFromAtmosphere;
@@ -214,8 +215,8 @@ public:
 		pGroundShader->SetUniformParameter3f("v3CameraPos", vCamera.x, vCamera.y, vCamera.z);
 		pGroundShader->SetUniformParameter3f("v3LightPos", m_vLightDirection.x, m_vLightDirection.y, m_vLightDirection.z);
 		pGroundShader->SetUniformParameter3f("v3InvWavelength", 1/m_fWavelength4[0], 1/m_fWavelength4[1], 1/m_fWavelength4[2]);
-		pGroundShader->SetUniformParameter1f("fCameraHeight", vCamera.Magnitude());
-		pGroundShader->SetUniformParameter1f("fCameraHeight2", vCamera.MagnitudeSquared());
+		pGroundShader->SetUniformParameter1f("fCameraHeight", camMag);
+		pGroundShader->SetUniformParameter1f("fCameraHeight2", camMagSqr);
 		pGroundShader->SetUniformParameter1f("fInnerRadius", m_fInnerRadius);
 		pGroundShader->SetUniformParameter1f("fInnerRadius2", m_fInnerRadius*m_fInnerRadius);
 		pGroundShader->SetUniformParameter1f("fOuterRadius", m_fOuterRadius);
@@ -241,7 +242,7 @@ public:
 
 		// Draw the sky sphere
 		CGLShaderObject *pSkyShader;
-		if(vCamera.Magnitude() >= m_fOuterRadius)
+		if(camMag >= m_fOuterRadius)
 			pSkyShader = &m_shSkyFromSpace;
 		else
 			pSkyShader = &m_shSkyFromAtmosphere;
@@ -249,8 +250,8 @@ public:
 		pSkyShader->SetUniformParameter3f("v3CameraPos", vCamera.x, vCamera.y, vCamera.z);
 		pSkyShader->SetUniformParameter3f("v3LightPos", m_vLightDirection.x, m_vLightDirection.y, m_vLightDirection.z);
 		pSkyShader->SetUniformParameter3f("v3InvWavelength", 1/m_fWavelength4[0], 1/m_fWavelength4[1], 1/m_fWavelength4[2]);
-		pSkyShader->SetUniformParameter1f("fCameraHeight", vCamera.Magnitude());
-		pSkyShader->SetUniformParameter1f("fCameraHeight2", vCamera.MagnitudeSquared());
+		pSkyShader->SetUniformParameter1f("fCameraHeight", camMag);
+		pSkyShader->SetUniformParameter1f("fCameraHeight2", camMagSqr);
 		pSkyShader->SetUniformParameter1f("fInnerRadius", m_fInnerRadius);
 		pSkyShader->SetUniformParameter1f("fInnerRadius2", m_fInnerRadius*m_fInnerRadius);
 		pSkyShader->SetUniformParameter1f("fOuterRadius", m_fOuterRadius);

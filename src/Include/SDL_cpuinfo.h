@@ -21,12 +21,12 @@
 */
 
 /**
- *  @file SDL_error.h
- *  Simple error message routines for SDL
+ *  @file SDL_cpuinfo.h
+ *  CPU feature detection for SDL
  */
 
-#ifndef _SDL_error_h
-#define _SDL_error_h
+#ifndef _SDL_cpuinfo_h
+#define _SDL_cpuinfo_h
 
 #include "SDL_stdinc.h"
 
@@ -36,32 +36,29 @@
 extern "C" {
 #endif
 
-/** 
- *  @name Public functions
- */
-/*@{*/
-extern DECLSPEC void SDLCALL SDL_SetError(const char *fmt, ...);
-extern DECLSPEC char * SDLCALL SDL_GetError(void);
-extern DECLSPEC void SDLCALL SDL_ClearError(void);
-/*@}*/
+/** This function returns true if the CPU has the RDTSC instruction */
+extern DECLSPEC SDL_bool SDLCALL SDL_HasRDTSC(void);
 
-/**
- *  @name Private functions
- *  @internal Private error message function - used internally
- */
-/*@{*/
-#define SDL_OutOfMemory()	SDL_Error(SDL_ENOMEM)
-#define SDL_Unsupported()	SDL_Error(SDL_UNSUPPORTED)
-typedef enum {
-	SDL_ENOMEM,
-	SDL_EFREAD,
-	SDL_EFWRITE,
-	SDL_EFSEEK,
-	SDL_UNSUPPORTED,
-	SDL_LASTERROR
-} SDL_errorcode;
-extern DECLSPEC void SDLCALL SDL_Error(SDL_errorcode code);
-/*@}*/
+/** This function returns true if the CPU has MMX features */
+extern DECLSPEC SDL_bool SDLCALL SDL_HasMMX(void);
+
+/** This function returns true if the CPU has MMX Ext. features */
+extern DECLSPEC SDL_bool SDLCALL SDL_HasMMXExt(void);
+
+/** This function returns true if the CPU has 3DNow features */
+extern DECLSPEC SDL_bool SDLCALL SDL_Has3DNow(void);
+
+/** This function returns true if the CPU has 3DNow! Ext. features */
+extern DECLSPEC SDL_bool SDLCALL SDL_Has3DNowExt(void);
+
+/** This function returns true if the CPU has SSE features */
+extern DECLSPEC SDL_bool SDLCALL SDL_HasSSE(void);
+
+/** This function returns true if the CPU has SSE2 features */
+extern DECLSPEC SDL_bool SDLCALL SDL_HasSSE2(void);
+
+/** This function returns true if the CPU has AltiVec features */
+extern DECLSPEC SDL_bool SDLCALL SDL_HasAltiVec(void);
 
 /* Ends C function definitions when using C++ */
 #ifdef __cplusplus
@@ -69,4 +66,4 @@ extern DECLSPEC void SDLCALL SDL_Error(SDL_errorcode code);
 #endif
 #include "close_code.h"
 
-#endif /* _SDL_error_h */
+#endif /* _SDL_cpuinfo_h */
